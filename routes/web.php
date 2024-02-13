@@ -16,4 +16,4 @@ Route::get('/inicio', function () {
     return view('inicio');
 })->name('partials.inicio');
 
-Route::resource('posts',PostController::class)->only(['index' , 'show' , 'create' , 'edit']);
+Route::resource('posts',PostController::class)->only(['index' , 'show' , 'create' , 'edit','destroy']);

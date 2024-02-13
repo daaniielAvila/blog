@@ -15,14 +15,20 @@
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h6 class="text-primary fw-bold mb-0">
             {{ $post['Titulo'] }}
-          <span class="text-dark ms-2"> {{$post['Contenido']}}</span>
         </h6>
-        <p class="mb-0"> {{$post['created_at']}}</p>
       </div>
       <div class="d-flex justify-content-between align-items-center">
         <p class="small mb-0" style="color: #aaa;">
-          <a href="#!" class="link-grey">Remove</a> •
-          <a href="{{route('posts.show', 'id')}}" class="link-grey">Ver mas</a>
+
+         <form action="{{route('posts.destroy' , $post->id)}}" method="POST">
+            @method('DELETE')
+            @csrf
+            <button type="submit" class="btn btn-danger btn-rounded" data-mdb-ripple-init>Borrar</button>
+          </form>
+          <form action="{{ route('posts.show', $post->id) }}" method="GET">
+            <button type="submit" class="btn btn-info btn-rounded" data-mdb-ripple-init>Ver más</button>
+        </form>
+        
         </p>
         <div class="d-flex flex-row">
           <i class="fas fa-star text-warning me-2"></i>

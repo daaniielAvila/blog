@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::get();
+        $posts = Post::orderBy('Titulo')->paginate(5);
 
         return view('posts.index', compact('posts'));
     }
@@ -41,12 +41,11 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
-    
+        $post = Post::findOrFail($id);
       
-    
         return view('posts.show', compact('post'));
     }
+    
     
 
     /**
@@ -70,6 +69,7 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
-    }
+        Post::findOrFail($id)->delete();
+        $posts = Post::get();
+        return view('posts.index', compact('posts'));    }
 }
