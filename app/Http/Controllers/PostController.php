@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Usuario;
 
 class PostController extends Controller
 {
@@ -15,8 +16,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderBy('Titulo')->paginate(5);
+        $usuarios = Usuario::get();
 
-        return view('posts.index', compact('posts'));
+        return view('posts.index', compact('posts', 'usuarios'));
     }
 
 
@@ -71,5 +73,6 @@ class PostController extends Controller
     {
         Post::findOrFail($id)->delete();
         $posts = Post::get();
-        return view('posts.index', compact('posts'));    }
+        return redirect()->route('posts.index');
+      }
 }

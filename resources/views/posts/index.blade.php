@@ -7,6 +7,7 @@
 
     
 @foreach ($posts as $post)
+  
 
 <div class="card mb-3">
 <div class="card-body">
@@ -14,7 +15,8 @@
     <div class="w-100">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h6 class="text-primary fw-bold mb-0">
-            {{ $post['Titulo'] }}
+            {{ $post['Titulo']}} | {{$post->usuario->login}}
+
         </h6>
       </div>
       <div class="d-flex justify-content-between align-items-center">
@@ -39,5 +41,8 @@
   </div>
 </div>
 </div>
+
   @endforeach
+  {{$posts->links()}}
+
   @endsection
